@@ -6,7 +6,7 @@ extension Flock {
         ToolsTask(),
         StopTask(),
         StartTask(),
-        ListTask()
+        ProcessTask()
     ]
 }
 
@@ -49,13 +49,13 @@ public class StartTask: Task {
     }
 }
 
-public class ListTask: Task {
-    public let name = "list"
+public class ProcessTask: Task {
+    public let name = "process"
     public let namespace = kitura
     
     public func run(on server: Server) throws {
         if let pid = try findServerPid(on: server) {
-            print("Kitura running on \(pid)")
+            print("Kitura running as process \(pid)")
         } else {
             print("Kitura not running")
         }

@@ -6,7 +6,7 @@ extension Flock {
         ToolsTask(),
         StopTask(),
         StartTask(),
-        ProcessTask()
+        PsTask()
     ]
 }
 
@@ -45,12 +45,12 @@ public class StartTask: Task {
     public func run(on server: Server) throws {
         print("Starting Kitura")
         try server.execute("nohup \(Paths.executable) > /dev/null 2>&1 &")
-        try invoke("kitura:list")
+        try invoke("kitura:ps")
     }
 }
 
-public class ProcessTask: Task {
-    public let name = "process"
+public class PsTask: Task {
+    public let name = "ps"
     public let namespace = kitura
     
     public func run(on server: Server) throws {

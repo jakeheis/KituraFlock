@@ -22,6 +22,7 @@ import KituraFlock
 
 Flock.use(Flock.Kitura)
 ```
+Run `flock tools` again before deploying to install Kitura's tools on your server.
 ## Included tasks
 ```
 kitura:tools    # Hooks .after("tools:dependencies")

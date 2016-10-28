@@ -13,11 +13,19 @@ Add these lines to `deploy/FlockDependencies.json`:
   }
 ]
 ```
+In your `Flockfile` add:
+```swift
+import Flock
+import KituraFlock
 
+...
+
+Flock.use(Flock.Kitura)
+```
 ## Included tasks
 ```
-kitura:tools
-kitura:stop
-kitura:start
+kitura:tools    # Hooks .after("tools:dependencies")
+kitura:stop     # Hooks .before("deploy:link")
+kitura:start    # Hooks .after("deploy:link")
 kitura:list
 ```

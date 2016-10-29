@@ -1,13 +1,18 @@
-import Foundation
 import Flock
+import Foundation
 
-extension Flock {
-    public static let Kitura: [Task] = [
+public extension Flock {
+    static let Kitura: [Task] = [
         ToolsTask(),
         StopTask(),
         StartTask(),
         PsTask()
     ]
+}
+
+public extension Config {
+    static var outputLog = "/dev/null"
+    static var errorLog = "/dev/null"
 }
 
 let kitura = "kitura"
@@ -44,7 +49,7 @@ public class StartTask: Task {
     
     public func run(on server: Server) throws {
         print("Starting Kitura")
-        try server.execute("nohup \(Paths.executable) > /dev/null 2>&1 &")
+        try server.execute("nohup \(Paths.executable) >> \(Config.outputLog) 2>> \(Config.errorLog) &")
         try invoke("kitura:ps")
     }
 }
